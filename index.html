@@ -1,194 +1,211 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visite meu GitHub</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cálculo de ICMS</title>
+  <style>
+    :root {
+      --primary: #4e54c8;
+      --secondary: #8f94fb;
+      --accent: #ffffff;
+      --shadow: rgba(0, 0, 0, 0.1);
+    }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f8f8f8;
-            color: #333;
-            line-height: 1.6;
-            font-size: 16px;
-        }
+    * {
+      box-sizing: border-box;
+    }
 
-        header {
-            background-color: #24292f;
-            color: white;
-            text-align: center;
-            padding: 2em 0;
-        }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-        header h1 {
-            font-size: 2.5em;
-            margin-bottom: 0.5em;
-        }
+    .container {
+      background: var(--accent);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 12px 30px var(--shadow);
+      max-width: 600px;
+      width: 100%;
+      text-align: center;
+      animation: fadeIn 0.7s ease;
+    }
 
-        header p {
-            font-size: 1.2em;
-        }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+    h1 {
+      color: var(--primary);
+      font-size: 32px;
+      margin-bottom: 30px;
+    }
 
-        .cv {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-            padding: 30px;
-            margin-top: 30px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+    label {
+      font-weight: bold;
+      margin-bottom: 8px;
+      display: block;
+      text-align: left;
+    }
 
-        .cv:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-        }
+    select {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      background-color: #f9f9f9;
+      font-size: 16px;
+    }
 
-        .cv h2 {
-            font-size: 2em;
-            color: #24292f;
-            margin-bottom: 1em;
-        }
+    button {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
 
-        .cv p {
-            font-size: 1.1em;
-            margin-bottom: 1em;
-        }
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 15px var(--shadow);
+    }
 
-        .skills ul {
-            list-style: none;
-            padding-left: 0;
-            font-size: 1.1em;
-        }
+    .result {
+      margin-top: 30px;
+      text-align: left;
+      padding: 20px;
+      background-color: #eef2ff;
+      border-radius: 10px;
+      font-size: 17px;
+      box-shadow: 0 4px 10px var(--shadow);
+    }
 
-        .skills li {
-            background: #f0f0f0;
-            border-radius: 5px;
-            margin: 8px 0;
-            padding: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    .logos {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 25px;
+    }
 
-        .skills .progress-bar {
-            width: 100%; 
-            background-color: #ddd; 
-            border-radius: 5px; 
-            height: 10px; 
-            margin-left: 20px; 
-        }
+    .logos img {
+      width: 120px;
+      height: auto;
+      transition: transform 0.3s ease;
+    }
 
-        .skills .progress {
-            height: 100%; 
-            border-radius: 5px; 
-        }
+    .logos img:hover {
+      transform: scale(1.1);
+    }
 
-        .btn {
-            display: inline-block;
-            background-color: #24292f;
-            color: white;
-            text-decoration: none;
-            padding: 15px 25px;
-            border-radius: 5px;
-            font-size: 1.1em;
-            margin-top: 30px;
-            transition: background-color 0.3s;
-        }
+    @media screen and (max-width: 600px) {
+      .container {
+        padding: 30px 20px;
+      }
 
-        .btn:hover {
-            background-color: #2a3138;
-        }
+      .logos {
+        flex-direction: column;
+        align-items: center;
+      }
 
-        footer {
-            background-color: #24292f;
-            color: white;
-            text-align: center;
-            padding: 1em 0;
-            margin-top: 40px;
-        }
-    </style>
+      .logos img {
+        width: 100px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<header>
-    <h1>Vinícius Santiago Montecoco</h1>
-    <p>Desenvolvedor de Software | Estudante de Análise e Desenvolvimento de Sistemas</p>
-</header>
-
-<div class="container">
-    <div class="cv">
-        <h2>Currículo</h2>
-        <p><strong>Nome:</strong> Vinícius Santiago Montecoco</p>
-        <p><strong>Resumo:</strong> Sou estudante de Análise e Desenvolvimento de Sistemas, buscando sempre me aprimorar. Tenho paixão por resolver problemas com tecnologia e estou sempre em busca de novos desafios para expandir meu conhecimento.</p>
-        <p><strong>Habilidades:</strong></p>
-        <div class="skills">
-            <ul>
-                <li>
-                    <span>Java</span>
-                    <div class="progress-bar">
-                        <div class="progress" style="width: 80%; background-color: #4caf50;"></div>
-                    </div>
-                    <span>80%</span>
-                </li>
-                <li>
-                    <span>C</span>
-                    <div class="progress-bar">
-                        <div class="progress" style="width: 85%; background-color: #4caf50;"></div>
-                    </div>
-                    <span>85%</span>
-                </li>
-                <li>
-                    <span>Python</span>
-                    <div class="progress-bar">
-                        <div class="progress" style="width: 85%; background-color: #4caf50;"></div>
-                    </div>
-                    <span>85%</span>
-                </li>
-                <li>
-                    <span>SQL</span>
-                    <div class="progress-bar">
-                        <div class="progress" style="width: 70%; background-color: #4caf50;"></div>
-                    </div>
-                    <span>70%</span>
-                </li>
-                <li>
-                    <span>Django</span>
-                    <div class="progress-bar">
-                        <div class="progress" style="width: 65%; background-color: #4caf50;"></div>
-                    </div>
-                    <span>65%</span>
-                </li>
-                <li>
-                    <span>Inglês</span>
-                    <div class="progress-bar">
-                        <div class="progress" style="width: 80%; background-color: #4caf50;"></div>
-                    </div>
-                    <span>80%</span>
-                </li>
-            </ul>
-        </div>
-        <p><strong>Experiência:</strong> Suporte Técnico da Prefeitura Municipal (2023-2024)</p>
-        <p><strong>Educação:</strong> Tecnologia em Análise e Desenvolvimento de Sistemas - Fundec/Unifadra (2023-2025)</p>
+  <div class="container">
+    <!-- Logotipos -->
+    <div class="logos">
+      <img src="https://fundec.edu.br/public/logo_unifadra.png" alt="Logotipo UNIFADRA" />
+      <img src="https://fundec.edu.br/public/logo_fundec.png" alt="Logotipo FUNDEC" />
     </div>
 
-    <a href="https://github.com/ViniSan25" target="_blank" class="btn">Visite meu GitHub</a>
-</div>
+    <h1>Calculadora de ICMS</h1>
 
-<footer>
-    <p>© 2025 Vinícius Santiago Montecoco</p>
-</footer>
+    <form id="taxForm">
+      <label for="origem">Origem:</label>
+      <select id="origem">
+        <option value="MA">Maranhão</option>
+        <option value="PI">Piauí</option>
+        <option value="RN">Rio Grande do Norte</option>
+        <option value="PA">Pará</option>
+        <option value="CE">Ceará</option>
+        <option value="BA">Bahia</option>
+        <option value="PE">Pernambuco</option>
+        <option value="PB">Paraíba</option>
+        <option value="AL">Alagoas</option>
+        <option value="SE">Sergipe</option>
+      </select>
+
+      <label for="destino">Destino:</label>
+      <select id="destino">
+        <option value="MA">Maranhão</option>
+        <option value="PI">Piauí</option>
+        <option value="RN">Rio Grande do Norte</option>
+        <option value="PA">Pará</option>
+        <option value="CE">Ceará</option>
+        <option value="BA">Bahia</option>
+        <option value="PE">Pernambuco</option>
+        <option value="PB">Paraíba</option>
+        <option value="AL">Alagoas</option>
+        <option value="SE">Sergipe</option>
+      </select>
+
+      <button type="button" onclick="calcularImposto()">Calcular ICMS</button>
+    </form>
+
+    <div id="resultado" class="result"></div>
+  </div>
+
+  <script>
+    const aliquotas = {
+      MA: { PI: 22.5, RN: 20, PA: 19, CE: 21, BA: 18, PE: 20, PB: 21, AL: 19, SE: 18 },
+      PI: { MA: 23, RN: 20, PA: 19, CE: 22, BA: 18, PE: 21, PB: 20, AL: 19, SE: 18 },
+      RN: { MA: 20, PI: 20, PA: 19, CE: 18, BA: 17, PE: 19, PB: 18, AL: 18, SE: 17 },
+      PA: { MA: 19, PI: 19, RN: 19, CE: 20, BA: 18, PE: 18, PB: 18, AL: 17, SE: 17 },
+      CE: { MA: 21, PI: 22, RN: 18, PA: 20, BA: 19, PE: 20, PB: 19, AL: 18, SE: 17 },
+      BA: { MA: 18, PI: 18, RN: 17, PA: 18, CE: 19, PE: 20, PB: 19, AL: 18, SE: 18 },
+      PE: { MA: 20, PI: 21, RN: 19, PA: 18, CE: 20, BA: 20, PB: 18, AL: 18, SE: 17 },
+      PB: { MA: 21, PI: 20, RN: 18, PA: 18, CE: 19, BA: 19, PE: 18, AL: 17, SE: 17 },
+      AL: { MA: 19, PI: 19, RN: 18, PA: 17, CE: 18, BA: 18, PE: 18, PB: 17, SE: 16 },
+      SE: { MA: 18, PI: 18, RN: 17, PA: 17, CE: 17, BA: 18, PE: 17, PB: 17, AL: 16 }
+    };
+
+    function calcularImposto() {
+      const origem = document.getElementById("origem").value;
+      const destino = document.getElementById("destino").value;
+      let imposto;
+
+      if (origem === destino) {
+        imposto = "Imposto de 0% (Mesma origem e destino)";
+      } else if (aliquotas[origem] && aliquotas[origem][destino] !== undefined) {
+        imposto = `Imposto de ${aliquotas[origem][destino]}%`;
+      } else {
+        imposto = "Imposto não especificado para essa combinação";
+      }
+
+      document.getElementById("resultado").innerHTML = `
+        <p><strong>Origem:</strong> ${origem}</p>
+        <p><strong>Destino:</strong> ${destino}</p>
+        <p><strong>Imposto:</strong> ${imposto}</p>
+      `;
+    }
+  </script>
 
 </body>
 </html>
