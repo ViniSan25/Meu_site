@@ -118,6 +118,35 @@
             padding: 1em 0;
             margin-top: 40px;
         }
+
+        .dark-mode body {
+    background-color: #121212;
+    color: #e0e0e0;
+        }
+
+        .dark-mode header,
+        .dark-mode footer {
+            background-color: #1f1f1f;
+            color: #ffffff;
+        }
+        
+        .dark-mode .cv {
+            background-color: #1e1e1e;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+        
+        .dark-mode .skills li {
+            background: #2a2a2a;
+        }
+        
+        .dark-mode .btn {
+            background-color: #333;
+        }
+        
+        .dark-mode .btn:hover {
+            background-color: #555;
+        }
+
     </style>
 </head>
 <body>
@@ -125,6 +154,9 @@
 <header>
     <h1>Vinícius Santiago Montecoco</h1>
     <p>Desenvolvedor de Software | Estudante de Análise e Desenvolvimento de Sistemas</p>
+    <button id="darkModeToggle" style="margin-top: 1em; padding: 10px 20px; font-size: 1em; border: none; border-radius: 5px; background-color: #444; color: white; cursor: pointer;">
+        🌙 Modo Escuro
+    </button>
 </header>
 
 <div class="container">
@@ -199,6 +231,14 @@
 <footer>
     <p>© 2025 Vinícius Santiago Montecoco</p>
 </footer>
+
+<script>
+    const toggle = document.getElementById('darkModeToggle');
+    toggle.addEventListener('click', () => {
+        document.documentElement.classList.toggle('dark-mode');
+        toggle.textContent = document.documentElement.classList.contains('dark-mode') ? '☀️ Modo Claro' : '🌙 Modo Escuro';
+    });
+</script>
 
 </body>
 </html>
