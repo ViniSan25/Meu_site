@@ -56,10 +56,35 @@
         }
 
         .cv h2 {
-            font-size: 2em;
-            color: #24292f;
-            margin-bottom: 1em;
+          font-size: 2em;
+          margin-bottom: 1em;
+      /* cor herdada agora */
         }
+
+    /* Dark mode aplicado ao <body> */
+    .dark-mode {
+      background-color: #121212;
+      color: #e0e0e0;
+    }
+
+    .dark-mode header,
+    .dark-mode footer {
+      background-color: #1f1f1f;
+      color: #ffffff;
+    }
+
+    .dark-mode .cv {
+      background-color: #1e1e1e;
+      box-shadow: 0 0 20px rgba(255,255,255,0.1);
+      color: #e0e0e0; /* texto claro */
+    }
+
+    /* reforço para títulos e parágrafos */
+    .dark-mode .cv h2,
+    .dark-mode .cv p,
+    .dark-mode .cv strong {
+      color: #e0e0e0;
+    }
 
         .cv p {
             font-size: 1.1em;
@@ -235,8 +260,8 @@
 <script>
     const toggle = document.getElementById('darkModeToggle');
     toggle.addEventListener('click', () => {
-        document.documentElement.classList.toggle('dark-mode');
-        toggle.textContent = document.documentElement.classList.contains('dark-mode') ? '☀️ Modo Claro' : '🌙 Modo Escuro';
+document.body.classList.toggle('dark-mode');
+ toggle.textContent = document.documentElement.classList.contains('dark-mode') ? '☀️ Modo Claro' : '🌙 Modo Escuro';
     });
 </script>
 
